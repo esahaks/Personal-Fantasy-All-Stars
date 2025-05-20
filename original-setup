@@ -57,3 +57,7 @@ New-VM `
 Set-VMDvdDrive -VMName "linux-0" -ControllerNumber 1 -Path "D:\virtual-machines\ubuntu-24.04.2-live-server-amd64.iso"
 Set-VMDvdDrive -VMName "linux-1" -ControllerNumber 1 -Path "D:\virtual-machines\ubuntu-24.04.2-live-server-amd64.iso"
 Set-VMDvdDrive -VMName "linux-2" -ControllerNumber 1 -Path "D:\virtual-machines\ubuntu-24.04.2-live-server-amd64.iso"
+
+
+# now go into hyper-V and double click the VM to open it and install ubuntu
+username: linux0
