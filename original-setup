@@ -1,4 +1,8 @@
 https://www.youtube.com/watch?v=1j5lhDzlFUM
+https://github.com/marcel-dempers/docker-development-youtube-series/blob/master/kubernetes/rancher/README.md
+
+
+
 
 # setup a new repository in git
 # setup a new project
@@ -15,3 +19,41 @@ https://www.youtube.com/watch?v=1j5lhDzlFUM
 set the $ethernet variable
 # run: $ethernet = Get-Netadapter -Name "Wi-Fi"
 # run: New-VMSwitch -Name "virtual-network" -NetAdapterName $ethernet.Name -AllowManagementOS $true -Notes "shared virtual network interface"
+
+
+# create folders for the 3 virtual machines and then create a hard drive for each machine
+New-VHD -Path D:\virtual-machines\vms\linux-0\linux-0.vhdx -SizeBytes 20GB
+New-VHD -Path D:\virtual-machines\vms\linux-1\linux-1.vhdx -SizeBytes 20GB
+New-VHD -Path D:\virtual-machines\vms\linux-2\linux-2.vhdx -SizeBytes 20GB
+
+
+# create the virtual machines
+New-VM `
+-Name "linux-0" `
+-Generation 1 `
+-MemoryStartupBytes 2048MB `
+-SwitchName "virtual-network" `
+-VHDPath "D:\virtual-machines\vms\linux-0\linux-0.vhdx" `
+-Path "D:\virtual-machines\vms\linux-0\"
+
+New-VM `
+-Name "linux-1" `
+-Generation 1 `
+-MemoryStartupBytes 2048MB `
+-SwitchName "virtual-network" `
+-VHDPath "D:\virtual-machines\vms\linux-1\linux-1.vhdx" `
+-Path "D:\virtual-machines\vms\linux-1\"
+
+New-VM `
+-Name "linux-2" `
+-Generation 1 `
+-MemoryStartupBytes 2048MB `
+-SwitchName "virtual-network" `
+-VHDPath "D:\virtual-machines\vms\linux-2\linux-2.vhdx" `
+-Path "D:\virtual-machines\vms\linux-2\"
+
+
+# create three dvd drives to mount the linux image to and install it
+Set-VMDvdDrive -VMName "linux-0" -ControllerNumber 1 -Path "D:\virtual-machines\ubuntu-24.04.2-live-server-amd64.iso"
+Set-VMDvdDrive -VMName "linux-1" -ControllerNumber 1 -Path "D:\virtual-machines\ubuntu-24.04.2-live-server-amd64.iso"
+Set-VMDvdDrive -VMName "linux-2" -ControllerNumber 1 -Path "D:\virtual-machines\ubuntu-24.04.2-live-server-amd64.iso"
