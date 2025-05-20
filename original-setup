@@ -1,0 +1,8 @@
+# setup a new repository in git
+# setup a new project
+
+# open up powershell
+# to get list of network devices: Get-Netadapter 
+# to enable hyperV
+# Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+# run "Import-Module Hyper-V"
