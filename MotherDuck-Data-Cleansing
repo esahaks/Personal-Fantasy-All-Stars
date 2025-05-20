@@ -1,0 +1,155 @@
+
+-- import the csv that was dumped and upload to your db as fantasy_player_stats_2025_raw
+
+create or replace table fantasy_player_stats_2025_temp_1 as
+select * from fantasy_player_stats_2025_raw order by Player, "Unnamed: 4_level_0-Date";
+
+delete from fantasy_player_stats_2025_temp_1 where "Unnamed: 0_level_0-Rk" = 'Rk';
+delete from fantasy_player_stats_2025_temp_1 where "Unnamed: 3_level_0-Week" ilike 'Player%';
+delete from fantasy_player_stats_2025_temp_1 where "Unnamed: 4_level_0-Date" is null;
+
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN column000; 
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 0_level_0-Rk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kick Returns-Ret";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kick Returns-Yds";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kick Returns-KRTD";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kick Returns-Y/Ret";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Punt Returns-Ret";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Punt Returns-Yds";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Punt Returns-PRTD";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Punt Returns-Y/Ret";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Snap Counts-DefSnp";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Snap Counts-Def%";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Snap Counts-STSnp";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Snap Counts-ST%";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 42_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 18_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 24_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 17_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 23_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 10_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 16_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 25_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 31_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 16_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 22_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 29_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 35_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Def Interceptions-Int";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Def Interceptions-Yds";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Def Interceptions-IntTD";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Def Interceptions-PD";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 21_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 27_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 20_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 26_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 40_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 46_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 14_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 20_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 24_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 30_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 22_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 28_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 31_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 37_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 32_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 38_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 28_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 34_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "0-19-FGA";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "0-19-FGM";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "20-29-FGA";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "20-29-FGM";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "30-39-FGA";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "30-39-FGM";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "40-49-FGA";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "40-49-FGM";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "50+-FGA";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "50+-FGM";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kicking Totals-FGA";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kicking Totals-FGM";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kicking Totals-FG%";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kicking Totals-XPA";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kicking Totals-XPM";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kickoffs-KO";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kickoffs-KOYds";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kickoffs-TB";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kickoffs-TB%";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Kickoffs-KOAvg";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 27_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 33_level_0-Sfty";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Unnamed: 36_level_0-Sk";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Tackles-Comb";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Tackles-Solo";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Tackles-Ast";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Tackles-TFL";
+alter table fantasy_player_stats_2025_temp_1 drop COLUMN "Tackles-QBHits";
+
+
+alter table fantasy_player_stats_2025_temp_1 RENAME COLUMN "Unnamed: 1_level_0-Gcar" to game_career_counter;
+alter table fantasy_player_stats_2025_temp_1 RENAME COLUMN "Unnamed: 2_level_0-Gtm" to game_season_counter;
+alter table fantasy_player_stats_2025_temp_1 RENAME COLUMN "Unnamed: 3_level_0-Week" to game_season_week;
+alter table fantasy_player_stats_2025_temp_1 RENAME COLUMN "Unnamed: 4_level_0-Date" to game_date;
+alter table fantasy_player_stats_2025_temp_1 RENAME COLUMN "Unnamed: 5_level_0-Team" to game_player_team;
+alter table fantasy_player_stats_2025_temp_1 RENAME COLUMN "Unnamed: 6_level_0-Unnamed: 6_level_1" to home_flag;
+alter table fantasy_player_stats_2025_temp_1 RENAME COLUMN "Unnamed: 7_level_0-Opp" to game_opponent;
+alter table fantasy_player_stats_2025_temp_1 RENAME COLUMN "Unnamed: 8_level_0-Result" to game_result;
+alter table fantasy_player_stats_2025_temp_1 RENAME COLUMN "Unnamed: 9_level_0-GS" to game_started_flag;
+alter table fantasy_player_stats_2025_temp_1 RENAME COLUMN "Passing-Yds.1" to "Passing-sack-yds";
+
+UPDATE fantasy_player_stats_2025_temp_1 SET game_started_flag = 1 WHERE game_started_flag = '*';
+UPDATE fantasy_player_stats_2025_temp_1 SET game_started_flag = 0 WHERE game_started_flag is null;
+
+UPDATE fantasy_player_stats_2025_temp_1 SET home_flag = 1 WHERE home_flag is null;
+UPDATE fantasy_player_stats_2025_temp_1 SET home_flag = 0 WHERE home_flag = '@';
+
+
+ALTER TABLE fantasy_player_stats_2025_temp_1 ADD game_season_year string;
+UPDATE fantasy_player_stats_2025_temp_1 SET game_season_year = case when month(game_date::date) between 7 and 12 then year(game_date::date) else year(game_date::date) - 1 end
+
+
+--create second temp table
+create or replace table fantasy_player_stats_2025_temp_2 as
+select
+Player,
+Position,
+game_career_counter::int as game_career_counter,
+game_season_counter::int as game_season_counter,
+game_season_week::int as game_season_week,
+game_season_year,
+game_date::date as game_date,
+game_player_team,
+home_flag::int as home_flag,
+game_opponent,
+game_result,
+game_started_flag::int as game_started_flag,
+"Rushing-Att"::int as rush_attempts,
+"Rushing-Yds"::int as rush_yds,
+"Rushing-TD"::int as rush_td,
+"Receiving-Tgt"::int as rec_targets,
+"Receiving-Rec"::int as rec_receptions,
+"Receiving-Yds"::int as rec_yds,
+"Receiving-TD"::int as rec_td,
+"Fumbles-Fmb"::int as fumble_count,
+"Fumbles-FL"::int as fumble_lost,
+"Fumbles-FR"::int as fumble_recovered,
+"Fumbles-Yds"::int as fumble_yds,
+"Snap Counts-OffSnp"::int as snap_count,
+"Snap Counts-Off%"::decimal(5,2) as snap_count_ratio,
+"Passing-Cmp"::int as pass_completions,
+"Passing-Att"::int as pass_attempts,
+"Passing-Yds"::int as pass_yds,
+"Passing-TD"::int as pass_tds,
+"Passing-Int"::int as pass_int,
+"Passing-Rate"::decimal(5,2) as pass_rating,
+"Passing-Sk"::int as pass_sack,
+"Passing-sack-yds"::int as pass_sack_yds,
+"Rushing-Yds"::DECIMAL*.1 + "Rushing-TD"::DECIMAL* 6
+  + "Receiving-Rec"::DECIMAL *.5 + "Receiving-TD"::DECIMAL * 6 + "Receiving-Yds"::DECIMAL * .1 
+  + "Passing-TD"::DECIMAL * 4 + "Passing-Yds"::DECIMAL * .25 - "Passing-Int"::decimal * 2 as half_ppr
+from fantasy_player_stats_2025_temp_1
+;
+
+
+
