@@ -61,3 +61,11 @@ Set-VMDvdDrive -VMName "linux-2" -ControllerNumber 1 -Path "D:\virtual-machines\
 
 # now go into hyper-V and double click the VM to open it and install ubuntu
 username: linux0
+ip address: 192.168.10.145
+
+# now we need to install docker
+curl -sSL https://get.docker.com/ | sh
+
+# restart here
+sudo usermod -aG docker $(whoami)
+sudo service docker start
