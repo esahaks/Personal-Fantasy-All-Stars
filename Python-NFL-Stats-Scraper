@@ -40,6 +40,10 @@ for i,row in enumerate(parsed_table.find_all('tr')[2:]):
     except:
         print('error')
 
+# append multiple years worth of players together
+#df_appended = plist # turn this on only for first run
+df_appended = pd.concat([df_appended, plist], ignore_index=True).drop_duplicates()
+df_appended = df_appended.reset_index(drop=True)
 
 #Create table and schema to dump table into
 url = 'https://www.pro-football-reference.com/players/M/MahoPa00/gamelog/'
@@ -52,19 +56,20 @@ df1 = df1.drop(df1.index.values, axis=0) #delete test data
 print('table schema created')
 
 
-for i, row in enumerate(plist.index):
-    print(plist.player_name[i])
-    url = plist.a_href[i]
+for i, row in enumerate(df_appended.index):
+    print(df_appended.player_name[i])
+    print (i)
+    url = df_appended.a_href[i]
     response = requests.get(url)
     print(response.status_code)
     df2 = pd.read_html(url)[0]
     df2.columns = df2.columns.map('-'.join) 
-    df2.insert(0,"Player",plist.player_name[i]) #add player name field
-    df2.insert(1,"Position",plist.position[i]) #add player name field
+    df2.insert(0,"Player",df_appended.player_name[i]) #add player name field
+    df2.insert(1,"Position",df_appended.position[i]) #add player name field
     frames = [df2, df1]
     df1 = pd.concat(frames)
-    print('appended games for '+ str(plist.player_name[i]))
-    time.sleep(5)
+    print('appended games for '+ str(df_appended.player_name[i]))
+    time.sleep(10)
     print('----------------------------------')
 print('end of loop')
 
